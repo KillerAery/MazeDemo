@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{a39ddefc-99e2-40e5-a961-f2d3f86d8996}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLSL">
+      <UniqueIdentifier>{6cd8075f-c703-4bfe-9d01-f24d330ec6a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\物理世界">
+      <UniqueIdentifier>{dcb784fd-9729-4950-967d-095d3439f7c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\物理世界">
+      <UniqueIdentifier>{cd6e7e72-67a7-4fa5-91e0-a742d0b97288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\游戏对象">
+      <UniqueIdentifier>{6a836e31-d782-449b-bdd8-d75c4385df70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\游戏对象\墙">
+      <UniqueIdentifier>{39ab6c3e-6dd6-4a1f-a0ce-dc271bd170d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\游戏对象\变换">
+      <UniqueIdentifier>{04f58a1c-cd43-41bc-a8c1-87cc02f5f611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\游戏对象">
+      <UniqueIdentifier>{fad16dd1-1c94-4bf3-8bf5-93301abcff9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\游戏对象\墙">
+      <UniqueIdentifier>{1fc18bd8-7826-4515-8b0c-2dc611f99b75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\游戏对象\变换">
+      <UniqueIdentifier>{3363e29a-b059-44e1-ab27-6a7cb017df50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\游戏对象\实体">
+      <UniqueIdentifier>{93038b5b-e21b-48af-9d1e-a7146963ad7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\游戏对象\实体">
+      <UniqueIdentifier>{6f9b5219-61b7-4e63-9054-20e154f0802a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\主驱动">
+      <UniqueIdentifier>{65cd05fc-f784-4582-9e94-001ddff27016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\渲染">
+      <UniqueIdentifier>{0ebc6ea7-2ba3-4d85-b37a-6bb081295b75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\渲染">
+      <UniqueIdentifier>{2e4c546e-9e05-4d83-918c-1b3901081cd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\游戏对象\玩家">
+      <UniqueIdentifier>{d90365ea-4544-472d-a44f-023c9acc3bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\游戏对象\玩家">
+      <UniqueIdentifier>{b11d8eca-3608-4ba2-9618-9f67723043cd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Common\d3dApp.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\d3dUtil.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\GameTimer.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\GeometryGenerator.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\LightHelper.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\MathHelper.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Waves.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\TextureMgr.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\xnacollision.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Camera.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsWorld.cpp">
+      <Filter>源文件\物理世界</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>源文件\游戏对象\墙</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>源文件\游戏对象\变换</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>源文件\游戏对象\实体</Filter>
+    </ClCompile>
+    <ClCompile Include="WallFactory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MazeApp.cpp">
+      <Filter>源文件\主驱动</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>源文件\渲染</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStates.cpp">
+      <Filter>源文件\渲染</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects.cpp">
+      <Filter>源文件\渲染</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\d3dUtil.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\d3dApp.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\d3dx11effect.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\GameTimer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\MathHelper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\LightHelper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\GeometryGenerator.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Waves.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\xnacollision.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\TextureMgr.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Camera.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsWorld.h">
+      <Filter>头文件\物理世界</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>头文件\游戏对象\墙</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>头文件\游戏对象\变换</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>头文件\游戏对象\实体</Filter>
+    </ClInclude>
+    <ClInclude Include="WallFactory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects.h">
+      <Filter>头文件\渲染</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStates.h">
+      <Filter>头文件\渲染</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>头文件\渲染</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="FX\Basic.fx">
+      <Filter>HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="FX\LightHelper.fx">
+      <Filter>HLSL</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
