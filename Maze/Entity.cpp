@@ -1,7 +1,7 @@
 #include "Entity.h"
 
 
-Entity::Entity() :m_body(nullptr), mTexSRV(nullptr){
+Entity::Entity() :m_body(nullptr), r_texSRV(nullptr){
 	//设置材料属性
 	mMat.Ambient = XMFLOAT4(0.48f, 0.55f, 0.46f, 1.0f);
 	mMat.Diffuse = XMFLOAT4(0.48f, 0.55f, 0.46f, 1.0f);
@@ -11,7 +11,8 @@ Entity::Entity() :m_body(nullptr), mTexSRV(nullptr){
 
 Entity::~Entity()
 {
-	btRelease();
+	//TODO
+	//正确删除物理身体
 }
 
 void Entity::initbtBody(const btRigidBody::btRigidBodyConstructionInfo& constructionInfor, btDiscreteDynamicsWorld * world) {
@@ -24,7 +25,7 @@ void Entity::initbtBody(const btRigidBody::btRigidBodyConstructionInfo& construc
 }
 
 void Entity::draw(ID3D11DeviceContext* d3dImmediateContext, CXMMATRIX view, CXMMATRIX proj, int passIndex) {
-	XMMATRIX rotation = XMLoadFloat4x4(&m_rotation);
+	XMMATRIX rotation = XMMatrixRotationQuaternion(XMLoadFloat3(&m_rotation));
 	XMMATRIX world = XMMatrixMultiply(rotation,XMMatrixTranslation(m_position.x, m_position.y, m_position.z));
 	XMMATRIX worldInvTranspose = MathHelper::InverseTranspose(world);
 	XMMATRIX worldViewProj = world * view * proj;
@@ -34,7 +35,8 @@ void Entity::draw(ID3D11DeviceContext* d3dImmediateContext, CXMMATRIX view, CXMM
 	Effects::BasicFX->SetWorldViewProj(worldViewProj);
 	Effects::BasicFX->SetTexTransform(XMMatrixIdentity());
 	Effects::BasicFX->SetMaterial(mMat);
-	if(mTexSRV)Effects::BasicFX->SetDiffuseMap(mTexSRV);
+	if(r_texSRV)Effects::BasicFX->SetDiffuseMap(r_texSRV);
+	else Effects::BasicFX->SetDiffuseMap(0);
 
 	ID3DX11EffectTechnique* activeTexTech = Effects::BasicFX->Light1TexTech;
 	activeTexTech->GetPassByIndex(passIndex)->Apply(0, d3dImmediateContext);
@@ -44,13 +46,4 @@ void Entity::draw(ID3D11DeviceContext* d3dImmediateContext, CXMMATRIX view, CXMM
 
 void Entity::update(float dt) {
 
-}
-
-void Entity::btRelease() {
-	//if (m_body) {
-	//	delete m_body;
-	//	//TODO
-	//	//		m_body->setFlags();
-	//	m_body = nullptr;
-	//}
 }

@@ -15,7 +15,7 @@ class Transform
 {
 protected:
 	XMFLOAT3 m_position;
-	XMFLOAT4X4 m_rotation;
+	XMFLOAT3 m_rotation;
 public:
 	Transform();
 	virtual ~Transform();
@@ -26,6 +26,7 @@ public:
 	void setPositionX(float x) { m_position.x = x; }
 	void setPositionY(float y) { m_position.y = y; }
 	void setPositionZ(float z) { m_position.z = z; }
-	void setTransform(CXMMATRIX transform) { XMStoreFloat4x4(&m_rotation,transform); }
+	const XMFLOAT3& getPosition()const{ return m_position; }
+	void setRotation(FXMVECTOR rotation) { XMStoreFloat3(&m_rotation,rotation); }
 };
 

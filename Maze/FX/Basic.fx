@@ -59,7 +59,7 @@ VertexOut VS(VertexIn vin)
 	VertexOut vout;
 	
 	// Transform to world space space.
-	vout.PosW    = mul(float4(vin.PosL, 1.0f), gWorld).xyz;
+	vout.PosW    = mul(float4(vin.PosL,1.0f), gWorld).xyz;
 	vout.NormalW = mul(vin.NormalL, (float3x3)gWorldInvTranspose);
 		
 	// Transform to homogeneous clip space.
@@ -71,20 +71,8 @@ VertexOut VS(VertexIn vin)
 	return vout;
 }
  
-float4 PS(VertexOut pin, uniform bool gUseTexure, uniform bool gAlphaClip, uniform bool gFogEnabled) : SV_Target
+float4 PS(VertexOut pin, uniform bool gShow2D, uniform bool gUseTexure, uniform bool gAlphaClip, uniform bool gFogEnabled) : SV_Target
 {
-	// Interpolating normal can unnormalize it, so normalize it.
-    pin.NormalW = normalize(pin.NormalW);
-
-	// The toEye vector is used in lighting.
-	float3 toEye = gEyePosW - pin.PosW;
-
-	// Cache the distance to the eye from this surface point.
-	float distToEye = length(toEye);
-
-	// Normalize.
-	toEye /= distToEye;
-	
     // Default to multiplicative identity.
     float4 texColor = float4(1, 1, 1, 1);
 
@@ -102,33 +90,53 @@ float4 PS(VertexOut pin, uniform bool gUseTexure, uniform bool gAlphaClip, unifo
 		}
 	}
 	 
+	float4 litColor = texColor;
+
+	//显示2D图片不计算光照
+	if (!gShow2D)
+	{
+		return litColor;
+	}
+
+
+	// Interpolating normal can unnormalize it, so normalize it.
+	pin.NormalW = normalize(pin.NormalW);
+
+	// The toEye vector is used in lighting.
+	float3 toEye = gEyePosW - pin.PosW;
+
+	// Cache the distance to the eye from this surface point.
+	float distToEye = length(toEye);
+
+	// Normalize.
+	toEye /= distToEye;
+
 	//
 	// Lighting.
 	//
 
-	// Start with a sum of zero. 
-	float4 ambient = float4(0.0f, 0.0f, 0.0f, 0.0f);
-	float4 diffuse = float4(0.0f, 0.0f, 0.0f, 0.0f);
-	float4 spec    = float4(0.0f, 0.0f, 0.0f, 0.0f);
+		// Start with a sum of zero. 
+		float4 ambient = float4(0.0f, 0.0f, 0.0f, 0.0f);
+		float4 diffuse = float4(0.0f, 0.0f, 0.0f, 0.0f);
+		float4 spec = float4(0.0f, 0.0f, 0.0f, 0.0f);
 
-	// Sum the light contribution from each light source.  
+		// Sum the light contribution from each light source.  
 
-	//方向灯
-	float4 A, D, S;
-	ComputeDirectionalLight(gMaterial, gDirLight, pin.NormalW, toEye ,A, D, S);
-	ambient += A;
-	diffuse += D;
-	spec += S;
+		//方向灯
+		float4 A, D, S;
+		ComputeDirectionalLight(gMaterial, gDirLight, pin.NormalW, toEye, A, D, S);
+		ambient += A;
+		diffuse += D;
+		spec += S;
 
-	//聚光灯
-	ComputeSpotLight(gMaterial, gSpotLight, pin.PosW, pin.NormalW, toEye , A, D, S);
-	ambient += A;
-	diffuse += D;
-	spec += S;
+		//聚光灯
+		ComputeSpotLight(gMaterial, gSpotLight, pin.PosW, pin.NormalW, toEye, A, D, S);
+		ambient += A;
+		diffuse += D;
+		spec += S;
 
-
-	// Modulate with late add.
-	float4 litColor = texColor * (ambient + diffuse + spec);
+		// Modulate with late add.
+		litColor = texColor * (ambient + diffuse + spec);
 
 	//
 	// Fogging
@@ -154,7 +162,7 @@ technique11 Light1
     {
         SetVertexShader( CompileShader( vs_5_0, VS() ) );
 		SetGeometryShader( NULL );
-        SetPixelShader( CompileShader( ps_5_0, PS(false, false, false) ) );
+        SetPixelShader( CompileShader( ps_5_0, PS(false,false, false, false) ) );
     }
 }
 
@@ -166,7 +174,7 @@ technique11 Light1Tex
     {
         SetVertexShader( CompileShader( vs_5_0, VS() ) );
 		SetGeometryShader( NULL );
-        SetPixelShader( CompileShader( ps_5_0, PS(true, false, false) ) );
+        SetPixelShader( CompileShader( ps_5_0, PS(false,true, false, false) ) );
     }
 }
 
@@ -177,7 +185,7 @@ technique11 Light1TexAlphaClip
     {
         SetVertexShader( CompileShader( vs_5_0, VS() ) );
 		SetGeometryShader( NULL );
-        SetPixelShader( CompileShader( ps_5_0, PS(true, true, false) ) );
+        SetPixelShader( CompileShader( ps_5_0, PS(false,true, true, false) ) );
     }
 }
 
@@ -187,7 +195,7 @@ technique11 Light1Fog
     {
         SetVertexShader( CompileShader( vs_5_0, VS() ) );
 		SetGeometryShader( NULL );
-        SetPixelShader( CompileShader( ps_5_0, PS(false, false, true) ) );
+        SetPixelShader( CompileShader( ps_5_0, PS(false,false, false, true) ) );
     }
 }
 
@@ -197,7 +205,7 @@ technique11 Light1TexFog
     {
         SetVertexShader( CompileShader( vs_5_0, VS() ) );
 		SetGeometryShader( NULL );
-        SetPixelShader( CompileShader( ps_5_0, PS( true, false, true) ) );
+        SetPixelShader( CompileShader( ps_5_0, PS( false,true, false, true) ) );
     }
 }
 
@@ -208,6 +216,17 @@ technique11 Light1TexAlphaClipFog
     {
         SetVertexShader( CompileShader( vs_5_0, VS() ) );
 		SetGeometryShader( NULL );
-        SetPixelShader( CompileShader( ps_5_0, PS( true, true, true) ) );
+        SetPixelShader( CompileShader( ps_5_0, PS(false,true, true, true) ) );
     }
+}
+
+
+technique11	Show2D
+{
+	pass P0
+	{
+	SetVertexShader(CompileShader(vs_5_0, VS()));
+	SetGeometryShader(NULL);
+	SetPixelShader(CompileShader(ps_5_0, PS(true,true ,false, false)));
+	}
 }

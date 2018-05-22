@@ -23,11 +23,11 @@ MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 }
 
 D3DApp::D3DApp(HINSTANCE hInstance)
-:	mhAppInst(hInstance),
+	: mhAppInst(hInstance),
 	mMainWndCaption(L"D3D11 Application"),
 	md3dDriverType(D3D_DRIVER_TYPE_HARDWARE),
-	mClientWidth(800),
-	mClientHeight(600),
+	mClientWidth(1600),
+	mClientHeight(1024),
 	mEnable4xMsaa(false),
 	mhMainWnd(0),
 	mAppPaused(false),
@@ -35,7 +35,7 @@ D3DApp::D3DApp(HINSTANCE hInstance)
 	mMaximized(false),
 	mResizing(false),
 	m4xMsaaQuality(0),
- 
+
 	md3dDevice(0),
 	md3dImmediateContext(0),
 	mSwapChain(0),
@@ -146,7 +146,7 @@ void D3DApp::OnResize()
 	HR(mSwapChain->ResizeBuffers(1, mClientWidth, mClientHeight, DXGI_FORMAT_R8G8B8A8_UNORM, 0));
 	ID3D11Texture2D* backBuffer;
 	HR(mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&backBuffer)));
-	HR(md3dDevice->CreateRenderTargetView(backBuffer, 0, &mRenderTargetView));
+	HR(md3dDevice->CreateRenderTargetView(backBuffer,0, &mRenderTargetView));
 	ReleaseCOM(backBuffer);
 
 	// Create the depth/stencil buffer and view.
@@ -183,7 +183,7 @@ void D3DApp::OnResize()
 
 	// Bind the render target view and depth/stencil view to the pipeline.
 
-	md3dImmediateContext->OMSetRenderTargets(1, &mRenderTargetView, mDepthStencilView);
+	md3dImmediateContext->OMSetRenderTargets(1,&mRenderTargetView,mDepthStencilView);
 	
 
 	// Set the viewport transform.
@@ -277,7 +277,7 @@ LRESULT D3DApp::MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		return 0;
 	case WM_SETCURSOR:
 		//Òþ²Ø¹â±ê
-		//SetCursor(HCURSOR(nullptr));
+		SetCursor(HCURSOR(nullptr));
 		return 0;
 	// WM_EXITSIZEMOVE is sent when the user grabs the resize bars.
 	case WM_ENTERSIZEMOVE:
@@ -491,9 +491,11 @@ void D3DApp::CalculateFrameStats()
 
 		std::wostringstream outs;   
 		outs.precision(6);
-		outs << mMainWndCaption << L"    "
-			 << L"FPS: " << fps << L"    " 
-			 << L"Frame Time: " << mspf << L" (ms)";
+
+		outs << mMainWndCaption << L"    ";
+		//	 << L"FPS: " << fps << L"    " 
+		//	 << L"Frame Time: " << mspf << L" (ms)";
+
 		SetWindowText(mhMainWnd, outs.str().c_str());
 		
 		// Reset for next average.

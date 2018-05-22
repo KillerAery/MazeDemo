@@ -26,13 +26,13 @@ void PhysicsWorld::init(){
 	//世界
 	m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher, m_broadphase, m_solver,m_collisionConfiguration);
 	//世界重力
-	m_dynamicsWorld->setGravity(btVector3(0, -1, 0));
+	m_dynamicsWorld->setGravity(btVector3(0, -10, 0));
 	//创建地面
 	createGround();
 }
 
 void PhysicsWorld::stepWorld(float dt) {
-		m_dynamicsWorld->stepSimulation(dt,10);
+		m_dynamicsWorld->stepSimulation(dt,20);
 		//更新物理世界每一个物体	
 		auto & objectArray = m_dynamicsWorld->getCollisionObjectArray();
 		for(int i =0;i<objectArray.size();++i)
@@ -47,7 +47,7 @@ void PhysicsWorld::stepWorld(float dt) {
 			object->setPosition(pos.x(), pos.y(), pos.z());
 			//更新目标物体的旋转角度
 			const auto & rotationM = objectArray[i]->getWorldTransform().getRotation();
-			object->setTransform(XMMatrixRotationQuaternion(XMVectorSet(rotationM.getX(), rotationM.getY(), rotationM.getZ(), rotationM.getW())));
+			object->setRotation(XMVectorSet(rotationM.getX(), rotationM.getY(), rotationM.getZ(), 0.0f));
 		}
 }
 
@@ -57,6 +57,7 @@ void PhysicsWorld::createGround() {
 	m_groundMotionState = new  btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -1, 0)));
 	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0,m_groundMotionState, m_groundShape, btVector3(0, 0, 0));
 	m_groundbody = new btRigidBody(groundRigidBodyCI);
+	m_groundbody->setFriction(10.0f);
 	//将地面刚体添加到 物理世界
 	m_dynamicsWorld->addRigidBody(m_groundbody);
 }

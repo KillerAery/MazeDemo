@@ -578,34 +578,37 @@ void GeometryGenerator::CreateGrid(float width, float depth, UINT m, UINT n, Mes
 	}
 }
 
-void GeometryGenerator::CreateFullscreenQuad(MeshData& meshData)
+void GeometryGenerator::Create2Dshow(MeshData& meshData,float centerX,float centerY,float scaleX,float scaleY)
 {
 	meshData.Vertices.resize(4);
 	meshData.Indices.resize(6);
 
+	centerX -= 0.5f;
+	centerY -= 0.5f;
+
 	// Position coordinates specified in NDC space.
 	meshData.Vertices[0] = Vertex(
-		-1.0f, -1.0f, 0.0f, 
-		0.0f, 0.0f, -1.0f,
-		1.0f, 0.0f, 0.0f,
+		centerX - scaleX, centerY - scaleY, 0.0f,
+		0.0, 0.0f, 0.0f,
+		0.0f, 0.0f, 0.0f,
 		0.0f, 1.0f);
 
 	meshData.Vertices[1] = Vertex(
-		-1.0f, +1.0f, 0.0f, 
-		0.0f, 0.0f, -1.0f,
-		1.0f, 0.0f, 0.0f,
+		centerY - scaleX, centerY + scaleY, 0.0f,
+		0.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 0.0f,
 		0.0f, 0.0f);
 
 	meshData.Vertices[2] = Vertex(
-		+1.0f, +1.0f, 0.0f, 
-		0.0f, 0.0f, -1.0f,
-		1.0f, 0.0f, 0.0f,
+		centerY + scaleX, centerY + scaleY,0.0f,
+		0.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 0.0f,
 		1.0f, 0.0f);
 
 	meshData.Vertices[3] = Vertex(
-		+1.0f, -1.0f, 0.0f, 
-		0.0f, 0.0f, -1.0f,
-		1.0f, 0.0f, 0.0f,
+		centerY + scaleX, centerY - scaleX,0.0f,
+		0.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 0.0f,
 		1.0f, 1.0f);
 
 	meshData.Indices[0] = 0;

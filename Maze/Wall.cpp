@@ -4,8 +4,8 @@
 
 Wall::Wall(){
 	//…Ë÷√≤ƒ¡œ Ù–‘
-	mMat.Ambient = XMFLOAT4(0.48f, 0.55f, 0.46f, 1.0f);
-	mMat.Diffuse = XMFLOAT4(0.48f, 0.55f, 0.46f, 1.0f);
+	mMat.Ambient = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
+	mMat.Diffuse = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
 	mMat.Specular = XMFLOAT4(0.2f, 0.2f, 0.2f, 16.0f);
 }
 

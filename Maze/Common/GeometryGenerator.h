@@ -79,7 +79,7 @@ public:
 	/// Creates a quad covering the screen in NDC coordinates.  This is useful for
 	/// postprocessing effects.
 	///</summary>
-	void CreateFullscreenQuad(MeshData& meshData);
+	void Create2Dshow(MeshData& meshData, float centerX, float centerY, float scaleX, float scaleY);
 
 private:
 	void Subdivide(MeshData& meshData);
