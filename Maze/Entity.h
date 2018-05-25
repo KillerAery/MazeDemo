@@ -3,6 +3,11 @@
 #include <btBulletDynamicsCommon.h>
 #include "Transform.h"
 
+enum class PhysicsFlag {
+	Normal,
+	ToDelete = -1
+};
+
 class Entity :
 	public Transform
 {

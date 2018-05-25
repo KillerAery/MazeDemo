@@ -4,9 +4,9 @@
 
 Wall::Wall(){
 	//…Ë÷√≤ƒ¡œ Ù–‘
-	mMat.Ambient = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
-	mMat.Diffuse = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
-	mMat.Specular = XMFLOAT4(0.2f, 0.2f, 0.2f, 16.0f);
+	mMat.Ambient = XMFLOAT4(0.4f, 0.4f, 0.4f, 1.0f);
+	mMat.Diffuse = XMFLOAT4(0.4f, 0.4f, 0.4f, 1.0f);
+	mMat.Specular = XMFLOAT4(0.4f, 0.4f, 0.4f, 16.0f);
 }
 
 

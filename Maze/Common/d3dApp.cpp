@@ -26,8 +26,8 @@ D3DApp::D3DApp(HINSTANCE hInstance)
 	: mhAppInst(hInstance),
 	mMainWndCaption(L"D3D11 Application"),
 	md3dDriverType(D3D_DRIVER_TYPE_HARDWARE),
-	mClientWidth(1600),
-	mClientHeight(1024),
+	mClientWidth(1920),
+	mClientHeight(1080),
 	mEnable4xMsaa(false),
 	mhMainWnd(0),
 	mAppPaused(false),
@@ -468,6 +468,14 @@ bool D3DApp::InitDirect3D()
 	// just call the OnResize method here to avoid code duplication.
 	
 	OnResize();
+
+	//х╚фа
+	HWND   hDesk;
+	RECT   rc;
+	hDesk = GetDesktopWindow();
+	GetWindowRect(hDesk, &rc);
+	SetWindowLong(mhMainWnd, GWL_STYLE, WS_BORDER);
+	SetWindowPos(mhMainWnd, HWND_TOPMOST, 0, 0, rc.right, rc.bottom, SWP_SHOWWINDOW);
 
 	return true;
 }

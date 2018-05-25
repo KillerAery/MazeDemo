@@ -35,6 +35,20 @@ void PhysicsWorld::stepWorld(float dt) {
 		m_dynamicsWorld->stepSimulation(dt,20);
 		//更新物理世界每一个物体	
 		auto & objectArray = m_dynamicsWorld->getCollisionObjectArray();
+
+		int size = objectArray.size();
+		int i = 0;
+		//先清除待删除物体
+		while(i < size)
+		{
+			if (objectArray[i]->getCollisionFlags() == (int)PhysicsFlag::ToDelete) {
+				m_dynamicsWorld->removeCollisionObject(objectArray[i]);
+				size--;
+			}
+			else {
+				i++;
+			}
+		}
 		for(int i =0;i<objectArray.size();++i)
 		{
 			//不存在用户指针或者睡眠中，则不处理

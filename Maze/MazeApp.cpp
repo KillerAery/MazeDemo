@@ -166,13 +166,13 @@ MazeApp::MazeApp(HINSTANCE hInstance)
 	mFlashLight.Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	mFlashLight.Specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	mFlashLight.Att = XMFLOAT3(1.0f, 0.0f, 0.0f);
-	mFlashLight.Spot = 96.0f;
+	mFlashLight.Spot = 50.0f;
 	mFlashLight.Range = 100.0f;
 
 	//…Ë÷√≤ƒ¡œ Ù–‘
-	mGridMat.Ambient  = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
-	mGridMat.Diffuse  = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
-	mGridMat.Specular = XMFLOAT4(0.2f, 0.2f, 0.2f, 16.0f);
+	mGridMat.Ambient  = XMFLOAT4(0.4f, 0.4f, 0.4f, 1.0f);
+	mGridMat.Diffuse  = XMFLOAT4(0.4f, 0.4f, 0.4f, 1.0f);
+	mGridMat.Specular = XMFLOAT4(0.4f, 0.4f, 0.4f, 16.0f);
 
 	m2DMat.Ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
 	m2DMat.Diffuse = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
@@ -199,7 +199,6 @@ bool MazeApp::Init()
 {
 	if(!D3DApp::Init())
 		return false;
-
 
 	// Must init Effects first since InputLayouts depend on shader signatures.
 	Effects::InitAll(md3dDevice);

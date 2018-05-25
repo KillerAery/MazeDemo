@@ -185,7 +185,6 @@ void Camera::Walk(float d)
 void Camera::Pitch(float angle)
 {
 	// Rotate up and look vector about the right vector.
-
 	XMMATRIX R = XMMatrixRotationAxis(XMLoadFloat3(&mRight), angle);
 
 	XMStoreFloat3(&mUp,   XMVector3TransformNormal(XMLoadFloat3(&mUp), R));

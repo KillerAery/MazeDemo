@@ -11,8 +11,8 @@ Entity::Entity() :m_body(nullptr), r_texSRV(nullptr){
 
 Entity::~Entity()
 {
-	//TODO
-	//正确删除物理身体
+	//删除物理身体
+	m_body->setFlags((int)PhysicsFlag::ToDelete);
 }
 
 void Entity::initbtBody(const btRigidBody::btRigidBodyConstructionInfo& constructionInfor, btDiscreteDynamicsWorld * world) {
