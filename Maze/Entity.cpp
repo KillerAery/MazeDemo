@@ -25,7 +25,7 @@ void Entity::initbtBody(const btRigidBody::btRigidBodyConstructionInfo& construc
 }
 
 void Entity::draw(ID3D11DeviceContext* d3dImmediateContext, CXMMATRIX view, CXMMATRIX proj, int passIndex) {
-	XMMATRIX rotation = XMMatrixRotationQuaternion(XMLoadFloat3(&m_rotation));
+	XMMATRIX rotation = XMMatrixRotationQuaternion(XMLoadFloat4(&m_rotation));
 	XMMATRIX world = XMMatrixMultiply(rotation,XMMatrixTranslation(m_position.x, m_position.y, m_position.z));
 	XMMATRIX worldInvTranspose = MathHelper::InverseTranspose(world);
 	XMMATRIX worldViewProj = world * view * proj;

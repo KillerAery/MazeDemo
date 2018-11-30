@@ -15,7 +15,7 @@ class Transform
 {
 protected:
 	XMFLOAT3 m_position;
-	XMFLOAT3 m_rotation;
+	XMFLOAT4 m_rotation;
 public:
 	Transform();
 	virtual ~Transform();
@@ -27,6 +27,6 @@ public:
 	void setPositionY(float y) { m_position.y = y; }
 	void setPositionZ(float z) { m_position.z = z; }
 	const XMFLOAT3& getPosition()const{ return m_position; }
-	void setRotation(FXMVECTOR rotation) { XMStoreFloat3(&m_rotation,rotation); }
+	void setRotation(FXMVECTOR rotation) { XMStoreFloat4(&m_rotation,rotation); }
 };
 

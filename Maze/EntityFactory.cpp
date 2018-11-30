@@ -16,6 +16,9 @@ EntityFactory::~EntityFactory()
 }
 
 void EntityFactory::init(int WallVertexOffset, UINT WallIndexOffset, UINT WallIndexCount,int SkullVertexOffset, UINT SkullIndexOffset, UINT SkullIndexCount) {
+	//设置随机种子
+	srand((unsigned)time(NULL));
+
 	//顶点索引相关信息
 	mWallIndexCount = WallIndexCount;
 	mWallIndexOffset = WallIndexOffset;
@@ -37,11 +40,12 @@ void EntityFactory::init(int WallVertexOffset, UINT WallIndexOffset, UINT WallIn
 	//初始化骷髅头的物理形状
 	m_skullShape = new btSphereShape(0.3f);
 	m_skullMass = 1;
-	m_skullInertia = btVector3(0, 0, 0);
+	m_skullInertia = btVector3(0,0,0);
 	m_skullShape->calculateLocalInertia(m_skullMass, m_skullInertia);
 }
 
 void EntityFactory::createMazeEntities(ID3D11Device* d3dDevice, btDiscreteDynamicsWorld * world){
+
 	//重置墙体信息
 	reset();
 
@@ -191,7 +195,6 @@ void EntityFactory::createSkulls(btDiscreteDynamicsWorld * world) {
 					//初始化物理身体
 					skull->initbtBody(skullConstruction, world);
 					skulls.push_back(std::move(skull));
-
 				}
 			}
 		}

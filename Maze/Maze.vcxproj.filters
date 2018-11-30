@@ -208,14 +208,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="FX\Basic.fx">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-    <FxCompile Include="FX\LightHelper.fx">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
+    <Image Include="Textures\ghost.dds">
+      <Filter>资源文件</Filter>
+    </Image>
     <Image Include="Textures\ground.dds">
       <Filter>资源文件</Filter>
     </Image>
@@ -234,11 +229,32 @@
     <Image Include="Textures\bricks.dds">
       <Filter>资源文件</Filter>
     </Image>
-    <Image Include="Textures\ghost.dds">
-      <Filter>资源文件</Filter>
-    </Image>
     <Image Include="Textures\ending.dds">
       <Filter>资源文件</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Music\walk02.wav">
+      <Filter>资源文件</Filter>
+    </Media>
+    <Media Include="Music\bgm01.wav">
+      <Filter>资源文件</Filter>
+    </Media>
+    <Media Include="Music\walk01.wav">
+      <Filter>资源文件</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Models\skull.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="FX\Basic.fx">
+      <Filter>HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="FX\LightHelper.fx">
+      <Filter>HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

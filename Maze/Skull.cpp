@@ -20,11 +20,11 @@ shared_ptr<Skull> Skull::create() {
 
 void Skull::draw(ID3D11DeviceContext* d3dImmediateContext, CXMMATRIX view, CXMMATRIX proj, int passIndex) {					
 	//»æÖÆ÷¼÷ÃÄ£ÐÍ
-	XMMATRIX scale = XMMatrixScaling(0.1f, 0.1f, 0.1f);
-	//XMMATRIX rotation = XMMatrixRotationQuaternion(XMLoadFloat3(&m_rotation));
-	XMMATRIX offset = XMMatrixTranslation(m_position.x ,m_position.y ,m_position.z);
+	XMMATRIX scale = XMMatrixScaling(0.07f, 0.07f, 0.07f);
+	XMMATRIX rotation = XMMatrixRotationQuaternion(XMLoadFloat4(&m_rotation));
+	XMMATRIX offset = XMMatrixTranslation(m_position.x ,m_position.y-0.03f,m_position.z);
 
-	XMMATRIX world = scale*offset;
+	XMMATRIX world = rotation*scale*offset;
 	XMMATRIX worldInvTranspose = MathHelper::InverseTranspose(world);
 	XMMATRIX worldViewProj = world * view * proj;
 
@@ -39,7 +39,6 @@ void Skull::draw(ID3D11DeviceContext* d3dImmediateContext, CXMMATRIX view, CXMMA
 	activeTexTech->GetPassByIndex(passIndex)->Apply(0, d3dImmediateContext);
 
 	d3dImmediateContext->DrawIndexed(mIndexCount, mIndexOffset, mVertexOffset);
-
 }
 
 void Skull::update(float dt) {

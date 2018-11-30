@@ -61,7 +61,8 @@ void PhysicsWorld::stepWorld(float dt) {
 			object->setPosition(pos.x(), pos.y(), pos.z());
 			//更新目标物体的旋转角度
 			const auto & rotationM = objectArray[i]->getWorldTransform().getRotation();
-			object->setRotation(XMVectorSet(rotationM.getX(), rotationM.getY(), rotationM.getZ(), 0.0f));
+			XMFLOAT4 quaternion = XMFLOAT4( rotationM.getX(), rotationM.getY(), rotationM.getZ(), rotationM.getW());
+			object->setRotation(XMLoadFloat4(&quaternion));
 		}
 }
 

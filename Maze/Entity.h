@@ -39,6 +39,7 @@ public:
 	void setVertexOffset(int vertexOffset) { mVertexOffset = vertexOffset; }
 	void setIndexOffset(UINT indexOffset) { mIndexOffset = indexOffset; }
 	void setIndexCount(UINT indexCount) { mIndexCount = indexCount; }
+	btRigidBody* getRigidBody()const{ return m_body; }
 protected:
 };
 
